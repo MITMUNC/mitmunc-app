@@ -1,70 +1,20 @@
 --
--- For more information on build.settings see the Corona SDK Build Guide at:
+-- For more information on build.settings, see the Project Build Settings guide at:
 -- https://docs.coronalabs.com/guide/distribution/buildSettings
 --
+
 settings =
 {
 	orientation =
 	{
 		-- Supported values for orientation:
 		-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
-
 		default = "portrait",
-		supported = { "portrait", "portraitUpsideDown", "landscapeLeft", "landscapeRight" },
-	},
-	
-	excludeFiles =
-	{
-		-- Include only the necessary icon files on each platform
-		iphone = { "Icon-*dpi.png", "ApplicationIcon.png", "*.ico"},
-		android = { "Icon-76.png", "Icon-Small*.png", "Icon*@2x.png", "Icon*@3x", "*.ico" },
-		win32 = { "Icon*.png" },
-	},
-
-	window = 
-	{
-		defaultViewWidth = 720,
-		defaultViewHeight = 1280,
-		resizable = true,
-        minViewWidth = 400,
-        minViewHeight = 600,
-		titleText = {
-            -- The "default" text will be used if the system is using a language and/or
-            -- country code not defined below. hanism.
-            default = "MIT Model UN",
-        }
+		supported = { "portrait", },
 	},
 
 	--
-	-- iOS Section
-	--
-	iphone =
-	{
-		plist = {
- 		    UILaunchStoryboardName = "LaunchScreen",  -- Required!
- 			--UIStatusBarHidden = true,
- 			UIPrerenderedIcon = true, -- set to false for "shine" overlay
-			--UIApplicationExitsOnSuspend = true, -- uncomment to quit app on suspend
-			-- Icons for universal apps > 8.0 only needed here
-			CFBundleIconFiles =
-			{
-				"Icon-76.png",
-				"Icon-76@2x.png",
-				"Icon-83.5@3x.png",
-				"Icon-60@2x.png",
-				"Icon-60@3x.png",
-				"Icon-Small.png",
-				"Icon-Small@2x.png",
-				"Icon-Small@3x.png",
-				"Icon-Small-40.png",
-				"Icon-Small-40@2x.png",
-				"Icon-Small-40@3x.png",
-			},
-		},
-	},
-	
-
-	-- Android Section
+	-- Android section
 	--
 	android =
 	{
@@ -74,12 +24,34 @@ settings =
 		},
 	},
 
+	--
+	-- iOS section
+	--
+	iphone =
+	{
+		xcassets = "Images.xcassets",
+		plist =
+		{
+			UIStatusBarHidden = false,
+			UILaunchStoryboardName = "LaunchScreen",
+		},
+	},
+
+	--
+	-- Plugins section
+	--
 	plugins =
-    {
-        ["plugin.calendar"] =
-        {
-            publisherId = "com.coronalabs"
-        },
-    },
-		
+	{
+
+	},
+
+	--
+	-- Project section
+	--
+	excludeFiles =
+	{
+		-- Exclude unnecessary files for each platform
+		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", },
+		android = { "LaunchScreen.storyboardc", },
+	},
 }
