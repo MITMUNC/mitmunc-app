@@ -36,4 +36,4 @@ local tabBar = widget.newTabBar{
 	buttons = tabButtons
 }
 
-onFirstView()	-- invoke first tab button's onPress event manually
+onSecondView()	-- invoke first tab button's onPress event manually
