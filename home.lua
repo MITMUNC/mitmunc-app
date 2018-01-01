@@ -5,6 +5,8 @@
 -----------------------------------------------------------------------------------------
 
 local composer = require( "composer" )
+local display = require("display")
+local graphics = require("graphics")
 local scene = composer.newScene()
 
 function scene:create( event )
@@ -16,27 +18,58 @@ function scene:create( event )
 	-- e.g. add display objects to 'sceneGroup', add touch listeners, etc.
 	
 	-- create a white background to fill screen
+	-- local function fitImage( displayObject, fitWidth, fitHeight, enlarge )
+	-- --
+	-- -- first determine which edge is out of bounds
+	-- --
+	-- 	local scaleFactor = fitHeight / displayObject.height 
+	-- 	local newWidth = displayObject.width * scaleFactor
+	-- 	if newWidth &gt; fitWidth then
+	-- 		scaleFactor = fitWidth / displayObject.width 
+	-- 	end
+	-- 	if not enlarge and scaleFactor > 1 then
+	-- 		return
+	-- 	end
+	-- 	displayObject:scale( scaleFactor, scaleFactor )
+	-- end
+
 	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
 	background:setFillColor( 1 )	-- white
 	
 	-- create some text
-	local title = display.newText( "First View", display.contentCenterX, 125, native.systemFont, 32 )
+	local title = display.newText( "MITMUNC X", display.contentCenterX, 50, native.systemFont, 32 )
 	title:setFillColor( 0 )	-- black
 	
-	local newTextParams = { text = "Loaded by the first tab's\n\"onPress\" listener\nspecified in the 'tabButtons' table", 
-						x = display.contentCenterX + 10, 
-						y = title.y + 215, 
+	local newTextParams = { text = "February 9 - 11, 2018 \n MIT", 
+						x = display.contentCenterX, 
+						y = title.y + 175, 
 						width = 310, height = 310, 
 						font = native.systemFont, fontSize = 14, 
 						align = "center" }
 	local summary = display.newText( newTextParams )
 	summary:setFillColor( 0 ) -- black
 
-	
+	-- local options = 
+	-- {
+	-- 	width = 70,
+ --    	height = 41, 
+ --    	numFrames = 2
+	-- }
+	-- local imageSheet = graphics.newImageSheet("mitmuncLogo2017.png", options)
+	-- local obj = display.newImageRect( imageSheet, 1, 70, 41 )
+	-- obj.x, obj.y = 100, 100
+	-- display.newImageSheet(imageSheet)
+	local icon = display.newImage("mitmuncLogo2017.png", display.contentCenterX, title.y + 150)
+	-- icon.x = display.contentCenterX
+	-- icon.y = display.contentCenterY
+	-- fitImage(icon, 200, 200, false)
+
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( background )
 	sceneGroup:insert( title )
 	sceneGroup:insert( summary )
+	sceneGroup:insert( icon )
+
 end
 
 function scene:show( event )
