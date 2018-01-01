@@ -64,34 +64,15 @@ function scene:create( event )
             strokeWidth = 4
         }
         )
+        sceneGroup:insert( button )
+
         
     end
 
 
-    -- local unsc_button = widget.newButton(
-    -- {
-    --     id = "unsc_button",
-    --     label = "UNSC",
-    --     onEvent = handleButtonEvent,
-    --     emboss = false,
-    --     shape = "roundedRect",
-    --     width = 200,
-    --     height = 40,
-    --     top = 30,
-    --     cornerRadius = 2,
-    --     fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
-    --     strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
-    --     strokeWidth = 4
-    -- }
-    -- )
-
-    -- unsc_button.x = display.contentCenterX
-
     -- all objects must be added to group (e.g. self.view)
-    button.x = display.contentCenterX
     sceneGroup:insert( background )
     sceneGroup:insert( title )
-    sceneGroup:insert( button )
 
     -- sceneGroup:insert( summary )
     -- sceneGroup:insert( unsc_button )
