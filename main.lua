@@ -37,7 +37,7 @@ end
 
 -- table to setup buttons
 local tabButtons = {
-	{ label="Home", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onHome, selected=true },
+	{ label="Home", defaultFile="home.png", overFile="home.png", width = 32, height = 32, onPress=onHome, selected=true },
 	{ label="Schedule", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onSchedule },
 	{ label="Committees", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onCommittees },
 	{ label="Map", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onMap },
