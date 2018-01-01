@@ -51,4 +51,4 @@ local tabBar = widget.newTabBar{
 }
 
 
-onHome()	-- invoke home tab button's onPress event manually
+onCommittees()	-- invoke home tab button's onPress event manually
