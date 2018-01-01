@@ -13,21 +13,35 @@ local composer = require "composer"
 
 
 -- event listeners for tab buttons:
-local function onFirstView( event )
-	composer.gotoScene( "view1" )
+local function onHome( event )
+	composer.gotoScene( "home" )
 end
 
-local function onSecondView( event )
-	composer.gotoScene( "view2" )
+local function onSchedule( event )
+	composer.gotoScene( "schedule" )
 end
 
+local function onCommittees( event )
+	composer.gotoScene( "committees" )
+end
+
+local function onMap( event )
+	composer.gotoScene( "map" )
+end
+
+local function onMerchandise( event )
+	composer.gotoScene( "merchandise" )
+end
 
 -- create a tabBar widget with two buttons at the bottom of the screen
 
 -- table to setup buttons
 local tabButtons = {
-	{ label="First", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onFirstView, selected=true },
-	{ label="Second", defaultFile="button2.png", overFile="button2-down.png", width = 32, height = 32, onPress=onSecondView },
+	{ label="Home", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onHome, selected=true },
+	{ label="Schedule", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onSchedule },
+	{ label="Committees", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onCommittees },
+	{ label="Map", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onMap },
+	{ label="Merchandise", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onMerchandise },
 }
 
 -- create the actual tabBar widget
@@ -36,4 +50,5 @@ local tabBar = widget.newTabBar{
 	buttons = tabButtons
 }
 
-onSecondView()	-- invoke first tab button's onPress event manually
+
+onSchedule()	-- invoke home tab button's onPress event manually

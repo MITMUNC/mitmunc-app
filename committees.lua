@@ -48,7 +48,7 @@ function scene:create( event )
     -- for loop to create committee buttons
     for i=1, #committees do
 
-        widget.newButton(
+        local button = widget.newButton(
         {
             id = committees[i],
             label = committees[i],
