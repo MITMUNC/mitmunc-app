@@ -44,8 +44,8 @@ function scene:create( event )
     
     -- local rect = display.newRect( 160, 240, 200, 200 )
     
-    createTableView()
-    end
+    -- createTableView()
+    
 
     -- for loop to create committee buttons
     -- for i=1, #committees do
