@@ -10,7 +10,13 @@ local scene = composer.newScene()
 
 function scene:create( event )
     local sceneGroup = self.view
-    
+    local committees = {"UNSC", "DISEC", "Futuristic", "HRC", "UNECLAC", "WHO", "UNEP", "Historical",
+                        "EU", "WTO", "IMF", "IAEA", "ASEAN", "UNHCR", "UNHCR", "SPECPOL", "ECOSOC"}
+    local function handleButtonEvent( event )
+        if ( "ended" == event.phase ) then
+            print( "Button was pressed and released" )
+            end
+    end
     -- Called when the scene's view does not exist.
     -- 
     -- INSERT code here to initialize the scene
@@ -37,37 +43,33 @@ function scene:create( event )
     -- summary:setFillColor( 0 ) -- black
     
     -- local rect = display.newRect( 160, 240, 200, 200 )
-    local committees = {"UNSC", "DISEC", "Futuristic", "HRC", "UNECLAC", "WHO", "UNEP", "Historical",
-                        "EU", "WTO", "IMF", "IAEA", "ASEAN", "UNHCR", "UNHCR", "SPECPOL", "ECOSOC"}
-    local function handleButtonEvent( event )
-        if ( "ended" == event.phase ) then
-            print( "Button was pressed and released" )
-            end
-    end
+    
+    -- createTableView()
+    
 
     -- for loop to create committee buttons
-    for i=1, #committees do
+    -- for i=1, #committees do
 
-        local button = widget.newButton(
-        {
-            id = committees[i],
-            label = committees[i],
-            onEvent = handleButtonEvent,
-            emboss = false,
-            shape = "roundedRect",
-            width = 200,
-            height = 40,
-            top = 30*i,
-            cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
-            strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
-            strokeWidth = 4
-        }
-        )
-        sceneGroup:insert( button )
+    --     local button = widget.newButton(
+    --     {
+    --         id = committees[i],
+    --         label = committees[i],
+    --         onEvent = handleButtonEvent,
+    --         emboss = false,
+    --         shape = "roundedRect",
+    --         width = 200,
+    --         height = 40,
+    --         top = 30*i,
+    --         cornerRadius = 2,
+    --         fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+    --         strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
+    --         strokeWidth = 4
+    --     }
+    --     )
+    --     sceneGroup:insert( button )   
+    -- end
 
-        
-    end
+
 
 
     -- all objects must be added to group (e.g. self.view)
@@ -114,6 +116,9 @@ function scene:destroy( event )
     -- INSERT code here to cleanup the scene
     -- e.g. remove display objects, remove touch listeners, save state, etc.
 end
+
+
+
 
 ---------------------------------------------------------------------------------
 
