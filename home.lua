@@ -8,9 +8,9 @@ local composer = require( "composer" )
 local display = require("display")
 local graphics = require("graphics")
 local scene = composer.newScene()
+local widget = require ( "widget" )
 
 function scene:create( event )
-	local sceneGroup = self.view
 	
 	-- Called when the scene's view does not exist.
 	-- 
@@ -33,21 +33,134 @@ function scene:create( event )
 	-- 	displayObject:scale( scaleFactor, scaleFactor )
 	-- end
 
-	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
-	background:setFillColor( 1 )	-- white
-	
+	-- temporary white background
+	--local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
+	--background:setFillColor( 1 )	-- white
+
+ 
+	-- Makes things scroll
+	local sceneGroup = self.view
+	local scrollView = widget.newScrollView(
+	    {
+	        top = 0,
+	        left = 0,
+	        width = display.contentHeight,
+	        height = display.contentHeight - 50,
+	        scrollWidth = 600,
+	        scrollHeight = 800,
+	        hideBackground = true
+	    }
+	)
+
+	--giving it a background
+	local background = display.newImageRect( "dome.jpg", display.contentWidth, 200)
+	background.x = display.contentCenterX
+	background.y = 100
+
+	--gradient background
+	local morebackground = display.newRect(display.contentWidth / 2 ,display.contentHeight / 2, display.contentWidth, display.contentHeight)
+	local gradient = {
+    	type="gradient",
+    	color1={ 140/256,24/256,27/256}, color2={ 0.8, 0.8, 0.8 }, direction="down"
+	}
+	morebackground:setFillColor( gradient )
+
+
+	local icon = display.newImage("mitmuncLogo2017.png", display.contentCenterX, 100)
+
 	-- create some text
-	local title = display.newText( "MITMUNC X", display.contentCenterX, 50, native.systemFont, 32 )
-	title:setFillColor( 0 )	-- black
 	
-	local newTextParams = { text = "February 9 - 11, 2018 \n MIT", 
+	local newTextParams = { text = "February 9 - 11, 2018", 
 						x = display.contentCenterX, 
-						y = title.y + 175, 
+						y = icon.y + 230, 
 						width = 310, height = 310, 
 						font = native.systemFont, fontSize = 14, 
 						align = "center" }
 	local summary = display.newText( newTextParams )
-	summary:setFillColor( 0 ) -- black
+	summary:setFillColor( 1 ) -- white
+
+
+	-- adding buttons
+	local function myButtonEvent ( event )
+    	if event.phase == "ended" then
+        	print( "You pressed and released the "..event.target.id.." button!" )
+        	if event.target.id == 'button_1' then
+        		composer.gotoScene( 'pdf_button_1')
+        	end
+    	end
+    	if ( event.phase == "moved" ) then  -- continues scrolling if touch on button moves more than 10 pixels
+    		local dy = math.abs( ( event.y - event.yStart ) )
+    		if ( dy > 10 ) then
+        		scrollView:takeFocus( event )
+    		end
+		end
+	end
+
+	local button_1 = widget.newButton
+	{
+		 id = 'button_1',
+		 left = 0,
+		 top = icon.y + 100,
+		 width = display.contentWidth, 
+		 height = 75,
+		 label = "Position Paper Guidelines",
+		 onEvent = myButtonEvent ,
+		 shape = "rect",
+		 labelColor = { default={ 1 }, over={ 1 } },
+		 fillColor = { default={140/256,24/256,27/256,1}, over={140/256,24/256,27/256,0.5} }
+
+	}
+
+	--button_1:setFillColor(1,0,0)--( 138, 26, 31 )
+	--setfillColor = { default={ 1, 0.2, 0.5, 0.7 }, over={ 1, 0.2, 0.5, 1 } }
+	-- button_1.alpha = 0.5  -- controls opacity
+
+	local button_2 = widget.newButton
+	{
+		 id = 'button_2',
+		 left = 0,
+		 top = button_1.y + 50,
+		 width = display.contentWidth, 
+		 height = 75,
+		 shape = "rect",
+		 label = "What to Bring",
+		 onEvent = myButtonEvent ,
+		 labelColor = { default={ 1 }, over={ 1 } },
+		 fillColor = { default={140/256,24/256,27/256,1}, over={140/256,24/256,27/256,0.5} }
+
+	}
+
+	local button_3 = widget.newButton
+	{
+		 id = 'button_3',
+		 left = 0,
+		 top = button_2.y + 50,
+		 width = display.contentWidth, 
+		 height = 75,
+		 shape = "rect",
+		 label = "Parliamentary Procedure",
+		 onEvent = myButtonEvent ,
+		 fillColor = { default={140/256,24/256,27/256,1}, over={140/256,24/256,27/256,0.5} },
+		 labelColor = { default={ 1 }, over={ 1 } }
+
+	}
+
+	local button_4 = widget.newButton
+	{
+		 id = 'button_4',
+		 left = 0,
+		 top = button_3.y + 50,
+		 width = display.contentWidth, 
+		 height = 75,
+		 shape = "rect",
+		 label = "Resolution Writing",
+		 onEvent = myButtonEvent ,
+		 fillColor = { default={140/256,24/256,27/256,1}, over={140/256,24/256,27/256,0.5} },
+		 labelColor = { default={ 1 }, over={ 1 } }
+
+	}
+
+
 
 	-- local options = 
 	-- {
@@ -59,18 +172,25 @@ function scene:create( event )
 	-- local obj = display.newImageRect( imageSheet, 1, 70, 41 )
 	-- obj.x, obj.y = 100, 100
 	-- display.newImageSheet(imageSheet)
-	local icon = display.newImage("mitmuncLogo2017.png", display.contentCenterX, title.y + 150)
 	-- icon.x = display.contentCenterX
 	-- icon.y = display.contentCenterY
 	-- fitImage(icon, 200, 200, false)
 
-	-- all objects must be added to group (e.g. self.view)
-	sceneGroup:insert( background )
-	sceneGroup:insert( title )
-	sceneGroup:insert( summary )
-	sceneGroup:insert( icon )
 
-end
+
+	-- all objects must be added to group (e.g. self.view)
+	scrollView:insert( background )
+	scrollView:insert( summary )
+	scrollView:insert( icon )
+	scrollView:insert( button_1 )
+	scrollView:insert( button_2 )
+	scrollView:insert( button_3 )
+	scrollView:insert( button_4 )
+	sceneGroup:insert(morebackground)
+	sceneGroup:insert( scrollView )
+
+
+	end
 
 function scene:show( event )
 	local sceneGroup = self.view
