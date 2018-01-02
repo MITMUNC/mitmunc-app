@@ -33,7 +33,7 @@ local function onMerchandise( event )
 	composer.gotoScene( "merchandise" )
 end
 
--- create a tabBar widget with two buttons at the bottom of the screen
+-- create a tabBar widget
 
 -- table to setup buttons
 local tabButtons = {
@@ -51,4 +51,4 @@ local tabBar = widget.newTabBar{
 }
 
 
-onCommittees()	-- invoke home tab button's onPress event manually
+onHome()	-- invoke home tab button's onPress event manually

@@ -27,10 +27,6 @@ function scene:create( event )
 	-- 	displayObject:scale( scaleFactor, scaleFactor )
 	-- end
 
-	-- temporary white background
-	--local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
-	--background:setFillColor( 1 )	-- white
-
  
 	-- Makes things scroll
 	local sceneGroup = self.view
@@ -59,11 +55,10 @@ function scene:create( event )
 	}
 	morebackground:setFillColor( gradient )
 
-
+	-- mitmunc logo
 	local icon = display.newImage("mitmuncLogo2017.png", display.contentCenterX, 100)
 
-	-- create some text
-	
+	-- Feb 9-11
 	local newTextParams = { text = "February 9 - 11, 2018", 
 						x = display.contentCenterX, 
 						y = icon.y + 230, 
@@ -77,10 +72,30 @@ function scene:create( event )
 	-- adding buttons
 	local function myButtonEvent ( event )
     	if event.phase == "ended" then
-        	print( "You pressed and released the "..event.target.id.." button!" )
-        	if event.target.id == 'button_1' then
-        		composer.gotoScene( 'pdf_button_1')
+        	-- print( "You pressed and released the "..event.target.id.." button!" )
+        	local platformName = system.getInfo( "platform" )
+        	print(platformName)
+        	if (platformName == "ios") or (platformName == "macos") or (platformName == "tvos") then  -- alternatively: https://github.com/boostup/Corona-SDK-Simple-PDF-Reader
+				webView = native.newWebView( display.contentWidth / 2, display.contentHeight / 2 - 50, display.contentWidth, display.contentHeight) 
+				webView:request(event.target.id..".pdf",  system.ResourceDirectory )
+				webView.oriX = webView.x; webView.oriY = webView.y 
+        		webView.alpha = 1; webView.oldAlpha = 1 
+       			webView.name = "webViewName" 
+       			sceneGroup.webView = webView
+       			sceneGroup:insert ( webView)
         	end
+        	if ( platformName == "android" ) or (platformName == "win32") or (platformName == "winphone") then 
+				local wasOpened = system.openURL(system.pathForFile(event.target.id..".pdf")) -- theoretically opens pdf if the phone has a pdf viewer
+				if (wasOpened) then
+	   				-- PDF was opened successfully by the default PDF viewer.
+	   				-- Note that your app will be suspended when this happens.
+				else
+					native.showAlert("Error","Sorry, you must download a PDF viewer in order to view this document.")
+	   					-- A PDF viewer is not available on the device.
+	   					-- You can ask the user nicely to install one in order to view PDF files.
+			end
+
+	end
     	end
     	if ( event.phase == "moved" ) then  -- continues scrolling if touch on button moves more than 10 pixels
     		local dy = math.abs( ( event.y - event.yStart ) )
@@ -104,10 +119,6 @@ function scene:create( event )
 		 fillColor = { default={140/256,24/256,27/256,1}, over={140/256,24/256,27/256,0.5} }
 
 	}
-
-	--button_1:setFillColor(1,0,0)--( 138, 26, 31 )
-	--setfillColor = { default={ 1, 0.2, 0.5, 0.7 }, over={ 1, 0.2, 0.5, 1 } }
-	-- button_1.alpha = 0.5  -- controls opacity
 
 	local button_2 = widget.newButton
 	{
@@ -203,8 +214,14 @@ end
 function scene:hide( event )
 	local sceneGroup = self.view
 	local phase = event.phase
+
+	local webView = sceneGroup.webView
 	
 	if event.phase == "will" then
+		if webView and webView.removeSelf then  -- removes pdf (webview) when you click to a different tab
+            webView:removeSelf()
+            webView = nil
+        end
 		-- Called when the scene is on screen and is about to move off screen
 		--
 		-- INSERT code here to pause the scene
@@ -216,7 +233,6 @@ end
 
 function scene:destroy( event )
 	local sceneGroup = self.view
-	
 	-- Called prior to the removal of scene's "view" (sceneGroup)
 	-- 
 	-- INSERT code here to cleanup the scene
