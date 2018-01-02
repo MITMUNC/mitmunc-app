@@ -6,37 +6,139 @@
 
 local composer = require( "composer" )
 local scene = composer.newScene()
+local widget = require ( "widget" )
 
 function scene:create( event )
 	local sceneGroup = self.view
+	local scrollView = widget.newScrollView(
+	    {
+	        top = 0,
+	        left = 0,
+	        width = display.contentHeight,
+	        height = display.contentHeight - 50,
+	        scrollWidth = 600,
+	        scrollHeight = 800,
+	        hideBackground = true  -- transparent
+	    }
+	)
+
+	local function myButtonEvent ( event )  -- links to the MITMUNC website
+    	if event.phase == "ended" then
+			system.openURL("http://www.mitmunc.org")
+    	end
+    end
 	
 	-- Called when the scene's view does not exist.
 	-- 
 	-- INSERT code here to initialize the scene
 	-- e.g. add display objects to 'sceneGroup', add touch listeners, etc.
 	
-	-- create a white background to fill screen
-	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
-	background:setFillColor( 1 )	-- white
+	-- create a gradient background to fill screen
+	local background = display.newRect(display.contentWidth / 2 ,display.contentHeight / 2, display.contentWidth, display.contentHeight)
+	local gradient = {
+    	type="gradient",
+    	color1={ 140/256,24/256,27/256}, color2={ 0, 0, 0 }, direction="down"
+	}
+	background:setFillColor( gradient )
 	
 	-- create some text
-	local title = display.newText( "Merchandise", display.contentCenterX, 125, native.systemFont, 32 )
-	title:setFillColor( 0 )	-- black
+	local title = display.newText( "Merchandise", display.contentCenterX, 50, native.systemFont, 32 )
+	title:setFillColor( 1 )	
+
+	local tang_picture = display.newImage("tang.jpg", display.contentCenterX, title.y + 125)
+	tang_picture:scale( 0.70, 0.70 )
 	
-	local newTextParams = { text = "Loaded by the first tab's\n\"onPress\" listener\nspecified in the 'tabButtons' table", 
-						x = display.contentCenterX + 10, 
-						y = title.y + 215, 
-						width = 310, height = 310, 
-						font = native.systemFont, fontSize = 14, 
-						align = "center" }
-	local summary = display.newText( newTextParams )
-	summary:setFillColor( 0 ) -- black
+	local newTextParams = { text = "During conference, MITMUNC X merchandise will be sold on the first floor of the MIT Tang Center (E51), located at 70 Memorial Dr, Cambridge, MA.", 
+						x = display.contentCenterX, 
+						y = tang_picture.y + 250, 
+						width = display.contentWidth - 20, height = 310, 
+						font = native.systemFont, fontSize = 12, 
+						align = "center"}
+	local merch1 = display.newText( newTextParams )
+	merch1:setFillColor( 1 ) 
+
+	--charity picture
+	local irc_picture = display.newImage("irc_logo.png", 75, merch1.y)
+	irc_picture:scale( 0.5, 0.5)
+
+	local newTextParams = { text = "Charity Cause:\n \nAny donations are welcome on our website!\n", 
+						x = display.contentCenterX + 60, 
+						y = irc_picture.y + 115, 
+						width = display.contentWidth - 150, height = 310, 
+						font = native.systemFont, fontSize = 12, 
+						align = "center"}
+	local irc_text = display.newText( newTextParams )
+
+	local mitmunc_link = widget.newButton
+	{
+		 id = 'mitmunc_link',
+		 left = 175,
+		 top =  450,
+		 width = display.contentWidth, 
+		 height = 30,
+		 shape = "rect",
+		 label = "www.mitmunc.org",
+		 onEvent = myButtonEvent ,
+		 labelColor = { default={ 1 }, over={ 1 } },
+		 textOnly = "true",
+		 fontSize = 12
+
+	}
+
+	--chocolate gavels photo
+	local gavel_picture = display.newImage("chocolate_gavel.jpeg", 110, merch1.y + 150)
+	gavel_picture:scale( 0.40, 0.40)
+
+	local newTextParams = { text = "Chocolate Gavel\n \n \n $__\n", 
+						x = display.contentCenterX + 95, 
+						y = gavel_picture.y + 130, 
+						width = display.contentWidth - 150, height = 310, 
+						font = native.systemFont, fontSize = 12, 
+						align = "center"}
+	local gavel_text = display.newText( newTextParams )
+
+	--tshirt photo
+	local tshirt_picture = display.newImage("tshirt_photo.jpg", 110, gavel_picture.y + 150)
+	tshirt_picture:scale( 0.23, 0.23)
+
+	local newTextParams = { text = "T-shirt\n \n \n $__\n", 
+						x = display.contentCenterX + 95, 
+						y = tshirt_picture.y + 130, 
+						width = display.contentWidth - 150, height = 310, 
+						font = native.systemFont, fontSize = 12, 
+						align = "center"}
+	local tshirt_text = display.newText( newTextParams )
+
+	--hoodie photo
+	local hoodie_picture = display.newImage("hoodie_photo.jpg", 110, tshirt_picture.y + 150)
+	hoodie_picture:scale( 0.23, 0.23)
+
+	local newTextParams = { text = "Hoodie\n \n \n $__\n", 
+						x = display.contentCenterX + 95, 
+						y = hoodie_picture.y + 130, 
+						width = display.contentWidth - 150, height = 310, 
+						font = native.systemFont, fontSize = 12, 
+						align = "center"}
+	local hoodie_text = display.newText( newTextParams )
+
+
 
 	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( background )
-	sceneGroup:insert( title )
-	sceneGroup:insert( summary )
+	sceneGroup:insert( scrollView )
+	scrollView:insert( title )
+	scrollView:insert( merch1 )
+	scrollView:insert( tang_picture )
+	scrollView:insert( irc_picture )
+	scrollView:insert( irc_text )
+	scrollView:insert( mitmunc_link )
+	scrollView:insert( gavel_picture )
+	scrollView:insert( gavel_text )
+	scrollView:insert( tshirt_picture )
+	scrollView:insert( tshirt_text )
+	scrollView:insert( hoodie_picture )
+	scrollView:insert( hoodie_text )
 end
 
 function scene:show( event )
