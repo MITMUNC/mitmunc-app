@@ -37,11 +37,11 @@ end
 
 -- table to setup buttons
 local tabButtons = {
-	{ label="Home", defaultFile="home.png", overFile="home-down.png", width = 32, height = 32, onPress=onHome, selected=true },
-	{ label="Schedule", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onSchedule },
-	{ label="Committees", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onCommittees },
-	{ label="Map", defaultFile="pin.png", overFile="pin-down.png", width = 32, height = 32, onPress=onMap },
-	{ label="Merchandise", defaultFile="button1.png", overFile="button1-down.png", width = 32, height = 32, onPress=onMerchandise },
+	{ label="Home", defaultFile="tabbar_1.png", overFile="tabbar_1.png", width = 32, height = 32, onPress=onHome, selected=true },
+	{ label="Schedule", defaultFile="tabbar_2.png", overFile="tabbar_2.png", width = 32, height = 32, onPress=onSchedule },
+	{ label="Committees", defaultFile="tabbar_3.png", overFile="tabbar_3.png", width = 32, height = 32, onPress=onCommittees },
+	{ label="Map", defaultFile="tabbar_4.png", overFile="tabbar_4.png", width = 32, height = 32, onPress=onMap },
+	{ label="Merchandise", defaultFile="tabbar_5.png", overFile="tabbar_5.png", width = 32, height = 32, onPress=onMerchandise },
 }
 
 -- create the actual tabBar widget
