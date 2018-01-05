@@ -11,6 +11,9 @@ display.setStatusBar( display.DefaultStatusBar )
 local widget = require "widget"
 local composer = require "composer"
 
+-- more global variables
+local BUTTON_DIMENSION = 32
+local TAB_BAR_HEIGHT = 50
 
 -- event listeners for tab buttons:
 local function onHome( event )
@@ -46,9 +49,10 @@ local tabButtons = {
 
 -- create the actual tabBar widget
 local tabBar = widget.newTabBar{
-	top = display.contentHeight - 50,	-- 50 is default height for tabBar widget
+	top = display.contentHeight - TAB_BAR_HEIGHT,	-- 50 is default height for tabBar widget
 	buttons = tabButtons
 }
+tabBar.height = TAB_BAR_HEIGHT
 
 
 onHome()	-- invoke home tab button's onPress event manually
