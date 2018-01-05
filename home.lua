@@ -74,7 +74,7 @@ function scene:create( event )
     	if event.phase == "ended" then
         	-- print( "You pressed and released the "..event.target.id.." button!" )
         	local platformName = system.getInfo( "platform" )
-        	print(platformName)
+        	--print(platformName)
         	if (platformName == "ios") or (platformName == "macos") or (platformName == "tvos") then  -- alternatively: https://github.com/boostup/Corona-SDK-Simple-PDF-Reader
 				webView = native.newWebView( display.contentWidth / 2, display.contentHeight / 2 - 50, display.contentWidth, display.contentHeight) 
 				webView:request(event.target.id..".pdf",  system.ResourceDirectory )
@@ -95,7 +95,7 @@ function scene:create( event )
 	   					-- You can ask the user nicely to install one in order to view PDF files.
 			end
 
-	end
+		end
     	end
     	if ( event.phase == "moved" ) then  -- continues scrolling if touch on button moves more than 10 pixels
     		local dy = math.abs( ( event.y - event.yStart ) )
