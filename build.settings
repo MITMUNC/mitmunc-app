@@ -42,10 +42,7 @@ settings =
 	--
 	plugins =
 	{
-		["CoronaProvider.native.popup.quickLook"] =
-        {
-            publisherId = "com.coronalabs"
-        },
+
 	},
 
 	--
