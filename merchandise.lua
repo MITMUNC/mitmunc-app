@@ -89,7 +89,7 @@ function scene:create( event )
 	local gavel_picture = display.newImage("chocolate_gavel.jpeg", 110, merch1.y + 150)
 	gavel_picture:scale( 0.40, 0.40)
 
-	local newTextParams = { text = "Chocolate Gavel\n \n \n $__\n", 
+	local newTextParams = { text = "Gavel Grams\n \n \n $3\n", 
 						x = display.contentCenterX + 95, 
 						y = gavel_picture.y + 130, 
 						width = display.contentWidth - 150, height = 310, 
@@ -98,10 +98,10 @@ function scene:create( event )
 	local gavel_text = display.newText( newTextParams )
 
 	--tshirt photo
-	local tshirt_picture = display.newImage("tshirt_photo.png", 110, gavel_picture.y + 150)
+	local tshirt_picture = display.newImage("tshirt.png", 110, gavel_picture.y + 150)
 	tshirt_picture:scale( 0.23, 0.23)
 
-	local newTextParams = { text = "T-shirt\n \n \n $__\n", 
+	local newTextParams = { text = "T-shirt\n \n \n $12\n", 
 						x = display.contentCenterX + 95, 
 						y = tshirt_picture.y + 130, 
 						width = display.contentWidth - 150, height = 310, 
@@ -110,10 +110,10 @@ function scene:create( event )
 	local tshirt_text = display.newText( newTextParams )
 
 	--hoodie photo
-	local hoodie_picture = display.newImage("hoodie_photo.png", 110, tshirt_picture.y + 150)
+	local hoodie_picture = display.newImage("hoodie.png", 110, tshirt_picture.y + 150)
 	hoodie_picture:scale( 0.23, 0.23)
 
-	local newTextParams = { text = "Hoodie\n \n \n $__\n", 
+	local newTextParams = { text = "Hoodie\n \n \n $20\n", 
 						x = display.contentCenterX + 95, 
 						y = hoodie_picture.y + 130, 
 						width = display.contentWidth - 150, height = 310, 
