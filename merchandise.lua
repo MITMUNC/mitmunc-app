@@ -98,7 +98,7 @@ function scene:create( event )
 	local gavel_text = display.newText( newTextParams )
 
 	--tshirt photo
-	local tshirt_picture = display.newImage("tshirt_photo.jpg", 110, gavel_picture.y + 150)
+	local tshirt_picture = display.newImage("tshirt_photo.png", 110, gavel_picture.y + 150)
 	tshirt_picture:scale( 0.23, 0.23)
 
 	local newTextParams = { text = "T-shirt\n \n \n $__\n", 
@@ -110,7 +110,7 @@ function scene:create( event )
 	local tshirt_text = display.newText( newTextParams )
 
 	--hoodie photo
-	local hoodie_picture = display.newImage("hoodie_photo.jpg", 110, tshirt_picture.y + 150)
+	local hoodie_picture = display.newImage("hoodie_photo.png", 110, tshirt_picture.y + 150)
 	hoodie_picture:scale( 0.23, 0.23)
 
 	local newTextParams = { text = "Hoodie\n \n \n $__\n", 
