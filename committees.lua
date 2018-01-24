@@ -25,11 +25,45 @@ function scene:create( event )
 	)
     local committees = {"UNSC", "DISEC", "Futuristic", "HRC", "UNECLAC", "WHO", "UNEP", "Historical",
                         "EU", "WTO", "IMF", "IAEA", "ASEAN", "UNHCR", "UNHRC", "SPECPOL", "ECOSOC"}
-    local function handleButtonEvent( event )
-        if ( "ended" == event.phase ) then
-            print( "Button was pressed and released" )
-            end
-    end
+    -- local function handleButtonEvent( event )
+    --     if ( "ended" == event.phase ) then
+    --         print( "Button was pressed and released" )
+    --         end
+    -- end
+    local function handleButtonEvent ( event )
+    	if event.phase == "ended" then
+        	-- print( "You pressed and released the "..event.target.id.." button!" )
+        	local platformName = system.getInfo( "platform" )
+        	print(platformName)
+        	if (platformName == "ios") or (platformName == "macos") or (platformName == "tvos") then  -- alternatively: https://github.com/boostup/Corona-SDK-Simple-PDF-Reader
+				webView = native.newWebView( display.contentWidth / 2, display.contentHeight / 2 - 50, display.contentWidth, display.contentHeight) 
+				webView:request(event.target.id..".pdf",  system.ResourceDirectory )
+				webView.oriX = webView.x; webView.oriY = webView.y 
+        		webView.alpha = 1; webView.oldAlpha = 1 
+       			webView.name = "webViewName" 
+       			sceneGroup.webView = webView
+       			sceneGroup:insert ( webView)
+        	end
+        	if ( platformName == "android" ) or (platformName == "win32") or (platformName == "winphone") then 
+				local wasOpened = system.openURL(system.pathForFile(event.target.id..".pdf")) -- theoretically opens pdf if the phone has a pdf viewer
+				if (wasOpened) then
+	   				-- PDF was opened successfully by the default PDF viewer.
+	   				-- Note that your app will be suspended when this happens.
+				else
+					native.showAlert("Error","Sorry, you must download a PDF viewer in order to view this document.")
+	   					-- A PDF viewer is not available on the device.
+	   					-- You can ask the user nicely to install one in order to view PDF files.
+			end
+
+	end
+    	end
+    	if ( event.phase == "moved" ) then  -- continues scrolling if touch on button moves more than 10 pixels
+    		local dy = math.abs( ( event.y - event.yStart ) )
+    		if ( dy > 10 ) then
+        		scrollView:takeFocus( event )
+    		end
+		end
+	end
     -- Called when the scene's view does not exist.
     -- 
     -- INSERT code here to initialize the scene
@@ -299,23 +333,7 @@ function scene:create( event )
         }
         )
 
-   	local unhrc_button = widget.newButton(
-        {
-            id = "UNHRC",
-            label = "UNHRC",
-            onEvent = handleButtonEvent,
-            emboss = false,
-            shape = "roundedRect",
-            width = 200,
-            height = 40,
-            top = unhcr_button.y+30,
-            left = 60,
-            cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
-            strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
-            strokeWidth = 4
-        }
-        )
+  
 
    	local specpol_button = widget.newButton(
         {
@@ -326,7 +344,7 @@ function scene:create( event )
             shape = "roundedRect",
             width = 200,
             height = 40,
-            top = unhrc_button.y+30,
+            top = unhcr_button.y+30,
             left = 60,
             cornerRadius = 2,
             fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
@@ -371,7 +389,6 @@ function scene:create( event )
     scrollView:insert( iaea_button )
     scrollView:insert( asean_button )
     scrollView:insert( unhcr_button )
-    scrollView:insert( unhrc_button )
     scrollView:insert( specpol_button )
     scrollView:insert( ecosoc_button )
 
@@ -400,7 +417,13 @@ function scene:hide( event )
     local sceneGroup = self.view
     local phase = event.phase
     
+    local webView = sceneGroup.webView
+
     if event.phase == "will" then
+    	if webView and webView.removeSelf then  -- removes pdf (webview) when you click to a different tab
+            webView:removeSelf()
+            webView = nil
+        end
         -- Called when the scene is on screen and is about to move off screen
         --
         -- INSERT code here to pause the scene
