@@ -93,8 +93,8 @@ function scene:create( event )
             top = title.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
-            strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={1/255,2/255,53/255} },
+            strokeColor = { default={100, 10, 200}, over={1/255,2/255,1/255} },
             strokeWidth = 4
         }
         )
@@ -111,7 +111,7 @@ function scene:create( event )
             top = unsc_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -129,7 +129,7 @@ function scene:create( event )
             top = disec_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -147,7 +147,7 @@ function scene:create( event )
             top = futuristic_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -165,7 +165,7 @@ function scene:create( event )
             top = hrc_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -183,7 +183,7 @@ function scene:create( event )
             top = uneclac_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -201,7 +201,7 @@ function scene:create( event )
             top = who_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -219,7 +219,7 @@ function scene:create( event )
             top = unep_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -237,7 +237,7 @@ function scene:create( event )
             top = historical_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -255,7 +255,7 @@ function scene:create( event )
             top = eu_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -273,7 +273,7 @@ function scene:create( event )
             top = wto_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -291,7 +291,7 @@ function scene:create( event )
             top = imf_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -309,7 +309,7 @@ function scene:create( event )
             top = iaea_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -327,7 +327,7 @@ function scene:create( event )
             top = asean_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -347,7 +347,7 @@ function scene:create( event )
             top = unhcr_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
@@ -365,7 +365,7 @@ function scene:create( event )
             top = specpol_button.y+30,
             left = 60,
             cornerRadius = 2,
-            fillColor = { default={163/255,32/255,53/255}, over={163/255,32/255,53/255} },
+            fillColor = { default={232/255,240/255,255/255}, over={163/255,32/255,53/255} },
             strokeColor = { default={1, 1, 1}, over={163/255,32/255,16/255} },
             strokeWidth = 4
         }
