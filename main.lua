@@ -48,10 +48,14 @@ local tabButtons = {
 }
 
 -- create the actual tabBar widget
-local tabBar = widget.newTabBar{
-	top = display.contentHeight - TAB_BAR_HEIGHT,	-- 50 is default height for tabBar widget
-	buttons = tabButtons
-}
+local tabBar = widget.newTabBar(
+    {
+        height = TAB_BAR_HEIGHT,
+        top = display.contentHeight - TAB_BAR_HEIGHT,    -- 50 is default height for tabBar widget
+        buttons = tabButtons,
+    }
+)
+
 tabBar.height = TAB_BAR_HEIGHT
 
 
