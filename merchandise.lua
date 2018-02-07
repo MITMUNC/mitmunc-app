@@ -89,8 +89,8 @@ function scene:create( event )
 	local gavel_picture = display.newImage("chocolate_gavel.jpeg", 110, merch1.y + 150)
 	gavel_picture:scale( 0.40, 0.40)
 
-	local newTextParams = { text = "Gavel Grams\n \n \n $3\n", 
-						x = display.contentCenterX + 95, 
+	local newTextParams = { text = "Gavel Grams\n \n 1 for $3\n \n 2 for $5 \n", 
+						x = display.contentCenterX + 80, 
 						y = gavel_picture.y + 130, 
 						width = display.contentWidth - 150, height = 310, 
 						font = native.systemFont, fontSize = 12, 
@@ -120,9 +120,6 @@ function scene:create( event )
 						font = native.systemFont, fontSize = 12, 
 						align = "center"}
 	local hoodie_text = display.newText( newTextParams )
-
-
-
 	
 	-- all objects must be added to group (e.g. self.view)
 	sceneGroup:insert( background )
